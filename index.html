@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+
+    <!-- Cosas por hacer:
+        - Centrar la tarjeta
+        - Agregar el background
+        - Responsive
+        - Y mas...
+    -->
+
+    <body>
+        <main class="container">
+            <div class="row">
+                <div class="col-10">
+                    <!-- Cambiar el tamaño de la tarjeta -->
+                    <div class="row bg-light p-3">
+                        <figure class="col-4">
+                            <img src="img/logo.png" alt="Logo" />
+                        </figure>
+
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col">
+                                    <h2>¡Bienvenido!</h2>
+                                    <form action="#">
+                                        <input
+                                            type="text"
+                                            class="col-12 my-1"
+                                            placeholder="Número de control"
+                                        />
+                                        <input
+                                            type="password"
+                                            class="col-12 my-1"
+                                            placeholder="Contraseña"
+                                        />
+                                        <select class="form-select my-1">
+                                            <option selected>Alumno</option>
+                                            <option value="1">Empleado</option>
+                                            <option value="2">
+                                                Administrador
+                                            </option>
+                                        </select>
+                                        <input
+                                            type="button"
+                                            class="btn-success my-1 col-12"
+                                            value="Ingresar"
+                                        />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
