@@ -1,0 +1,12 @@
+.body-index {
+    background: rgba(gray, 0.5);
+    background-image: url("../img/tec.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.card-login {
+    height: 100vh;
+}

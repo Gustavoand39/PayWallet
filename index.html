@@ -6,54 +6,50 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Login</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/index.css" />
     </head>
 
-    <!-- Cosas por hacer:
-        - Centrar la tarjeta
-        - Agregar el background
-        - Responsive
-        - Y mas...
-    -->
-
-    <body>
+    <body class="body-index">
         <main class="container">
-            <div class="row">
-                <div class="col-10">
-                    <!-- Cambiar el tamaño de la tarjeta -->
-                    <div class="row bg-light p-3">
-                        <figure class="col-4">
-                            <img src="img/logo.png" alt="Logo" />
-                        </figure>
+            <div class="row d-flex justify-content-center align-items-center card-login">
+                <div class="col-8">
+                    <div class="row bg-light px-3 py-5">
+                        <!-- Logo -->
+                        <div class="col-3 d-flex justify-content-center align-items-center">
+                            <img src="img/logo.png" class="img-fluid" alt="Logo" />
+                        </div>
 
-                        <div class="col-8">
+                        <!-- Formulario -->
+                        <div class="col-9">
                             <div class="row">
                                 <div class="col">
-                                    <h2>¡Bienvenido!</h2>
-                                    <form action="#">
-                                        <input
-                                            type="text"
-                                            class="col-12 my-1"
-                                            placeholder="Número de control"
-                                        />
-                                        <input
-                                            type="password"
-                                            class="col-12 my-1"
-                                            placeholder="Contraseña"
-                                        />
-                                        <select class="form-select my-1">
-                                            <option selected>Alumno</option>
-                                            <option value="1">Empleado</option>
-                                            <option value="2">
-                                                Administrador
-                                            </option>
-                                        </select>
-                                        <input
-                                            type="button"
-                                            class="btn-success my-1 col-12"
-                                            value="Ingresar"
-                                        />
-                                    </form>
+                                    <h2 class="text-center mb-3">¡Bienvenido!</h2>
+                                    <div class="row d-flex justify-content-center align-items-center">
+                                        <div class="col-10">
+                                            <form action="#">
+                                                <input
+                                                    type="text"
+                                                    class="col-12 my-2"
+                                                    placeholder="Número de control"
+                                                />
+                                                <input
+                                                    type="password"
+                                                    class="col-12 my-2"
+                                                    placeholder="Contraseña"
+                                                />
+                                                <select class="form-select my-2 d-inline-block col-10">
+                                                    <option selected>Alumno</option>
+                                                    <option value="1">Empleado</option>
+                                                    <option value="2">Administrador</option>
+                                                </select>
+                                                <input
+                                                    type="button"
+                                                    class="btn-success my-2 col-12"
+                                                    value="Ingresar"
+                                                />
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
