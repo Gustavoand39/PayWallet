@@ -1,36 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/.css" />
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Agregar usuario</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/admin.css" />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <div class="container-fluid">
+                <!-- Navbar items -->
+                <div class="collapse navbar-collapse">
+                    <div class="navbar-nav">
+                        <!-- Navbar links -->
+                        <a href="#" class="nav-link active" aria-current="page">Agregar</a>
+                        <a href="#" class="nav-link">Consultar</a>
+                    </div>
+                </div>
+                <!-- SearchBar -->
+                <form class="d-flex">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                    <input
+                        class="form-control mx-2"
+                        type="search"
+                        placeholder="Buscar"
+                        aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            
-            <!-- Navbar items -->
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <!-- Navbar links -->
-                    <a href="#" class="nav-link active" aria-current="page">Agregar</a>
-                    <a href="#" class="nav-link">Consultar</a>
+        <main">
+            <div class="container">
+                <div class="row row-main d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-lg-10">
+                        <form action="#" class="bg-dark bg-opacity-10 px-5 py-4">
+                            <div class="row my-3">
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="mb-4">
+                                        <label for="name" class="form-label">Nombre(s):</label>
+                                        <input type="text" id="name" class="form-control" />
+                                    </div>
+                
+                                    <div class="mb-4">
+                                        <label for="lastName" class="form-label">Apellidos:</label>
+                                        <input type="text" id="lastName" class="form-control" />
+                                    </div>
+        
+                                    <div class="mb-4">
+                                        <label for="carreer" class="form-label">Carrera:</label>
+                                        <select class="form-select" id="carreer">
+                                            <option value="" selected disabled hidden>Selecciona una carrera</option>
+                                            <option value="1">Industrial</option>
+                                            <option value="2">Bioquímica</option>
+                                            <option value="3">Mecatrónica</option>
+                                            <option value="4">Nanotecnología</option>
+                                            <option value="5">Gestión Empresarial</option>
+                                            <option value="6">Sistemas Computacionales</option>
+                                            <option value="7">Tecnologías de la Información</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="mb-4">
+                                        <label for="numberControl" class="form-label">Número de control:</label>
+                                        <input type="text" id="numberControl" class="form-control" />
+                                    </div>
+                
+                                    <div class="mb-4">
+                                        <label for="password" class="form-label">Contraseña:</label>
+                                        <input type="password" id="password" class="form-control" />
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="confirmPassword" class="form-label">Confirmar contraseña:</label>
+                                        <input type="password" id="confirmPassword" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div>
+                                <button type="submit" class="form-control btn-info">Agregar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+        </main>
 
-            <!-- SearchBar -->
-            <form class="d-flex">
-                <input class="form-control mx-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-
-        </div>
-    </nav>
-    
-</body>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script
+            src="https://kit.fontawesome.com/57265b4464.js"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>

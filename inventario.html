@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inventario</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/admin.css" />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <div class="container-fluid">
+                <!-- Navbar items -->
+                <div class="collapse navbar-collapse">
+                    <div class="navbar-nav">
+                        <!-- Navbar links -->
+                        <a href="#" class="nav-link">Pedidos</a>
+                        <a href="#" class="nav-link active" aria-current="page">Inventario</a>
+                    </div>
+                </div>
+                <!-- SearchBar -->
+                <form class="d-flex">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                    <input
+                        class="form-control mx-2"
+                        type="search"
+                        placeholder="Buscar"
+                        aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
+
+        <main">
+            <div class="container">
+                <div class="row row-ordenes bg-dark bg-opacity-10 px-4 py-3 my-5">
+                    <div class="col-12">
+                        <div class="row row-ordenes d-flex justify-content-center align-items-center bg-white p-1 my-3">
+                            <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
+                                <h4 class="me-2">Nombre del platillo</h4>
+                            </div>
+                            <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
+                                <button class="btn-info btn-inventario p-1" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button class="btn-danger btn-inventario p-1" title="Eliminar">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="row row-ordenes d-flex justify-content-center align-items-center bg-white p-1 my-3">
+                            <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
+                                <h4 class="me-2">Nombre del platillo</h4>
+                            </div>
+                            <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
+                                <button class="btn-info btn-inventario p-1" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button class="btn-danger btn-inventario p-1" title="Eliminar">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row row-ordenes d-flex justify-content-center align-items-center bg-white p-1 my-3">
+                            <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
+                                <h4 class="me-2">Nombre del platillo</h4>
+                            </div>
+                            <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
+                                <button class="btn-info btn-inventario p-1" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button class="btn-danger btn-inventario p-1" title="Eliminar">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón flotante -->
+            <div class="fixed-bottom text-end m-3">
+                <a href="#" class="btn btn-floating btn-lg btn-primary">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>              
+
+        </main>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script
+            src="https://kit.fontawesome.com/57265b4464.js"
+            crossorigin="anonymous"
+        ></script>
+    </body>   
+
+</html>

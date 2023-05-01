@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Login</title>
+        <title>Ingresar</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/index.css" />
     </head>
@@ -13,40 +13,44 @@
         <main class="container">
             <div class="row d-flex justify-content-center align-items-center card-login">
                 <div class="col-8">
-                    <div class="row bg-light px-3 py-5">
+                    <div class="row bg-login p-4 bg-light">
                         <!-- Logo -->
-                        <div class="col-3 d-flex justify-content-center align-items-center">
+                        <div class="col-lg-4 d-none d-lg-flex d-flex justify-content-center align-items-center">
                             <img src="img/logo.png" class="img-fluid" alt="Logo" />
                         </div>
 
                         <!-- Formulario -->
-                        <div class="col-9">
+                        <div class="col-12 col-lg-8 ">
                             <div class="row">
                                 <div class="col">
-                                    <h2 class="text-center mb-3">¡Bienvenido!</h2>
+                                    <h2 class="text-center mb-4">¡Bienvenido!</h2>
                                     <div class="row d-flex justify-content-center align-items-center">
-                                        <div class="col-10">
+                                        <div class="col-12 col-lg-10">
                                             <form action="#">
-                                                <input
-                                                    type="text"
-                                                    class="col-12 my-2"
-                                                    placeholder="Número de control"
-                                                />
-                                                <input
-                                                    type="password"
-                                                    class="col-12 my-2"
-                                                    placeholder="Contraseña"
-                                                />
-                                                <select class="form-select my-2 d-inline-block col-10">
-                                                    <option selected>Alumno</option>
-                                                    <option value="1">Empleado</option>
-                                                    <option value="2">Administrador</option>
-                                                </select>
-                                                <input
-                                                    type="button"
-                                                    class="btn-success my-2 col-12"
-                                                    value="Ingresar"
-                                                />
+                                                <div class="mb-4">
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Nombre de usuario"
+                                                    />
+                                                </div>
+                                                <div class="mb-4">
+                                                    <input
+                                                        type="password"
+                                                        class="form-control"
+                                                        placeholder="Contraseña"
+                                                    />
+                                                </div>
+                                                <div class="mb-4">
+                                                    <select class="form-select">
+                                                        <option value="" selected disabled hidden>Selecciona un perfil</option>
+                                                        <option value="1">Empleado</option>
+                                                        <option value="2">Administrador</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <button type="submit" class="form-control btn-success">Ingresar</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>

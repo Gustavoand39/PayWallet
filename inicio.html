@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inicio</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/admin.css" />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <div class="container-fluid">
+                <!-- Navbar items -->
+                <div class="collapse navbar-collapse">
+                    <div class="navbar-nav">
+                        <!-- Navbar links -->
+                        <a href="#" class="nav-link" aria-current="page">Pedidos</a>
+                        <a href="#" class="nav-link active">Inventario </a>
+                    </div>
+                </div>
+                <!-- SearchBar -->
+                <form class="d-flex">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                    <input
+                        class="form-control mx-2"
+                        type="search"
+                        placeholder="Buscar"
+                        aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
+
+        <main">
+            <div class="container">
+                <div class="row row-empleado d-flex justify-content-center align-items-center">
+                    <div class="col-12">
+                        <div class="row">
+
+                            <div class="col-6">
+                                <div class="card">
+                                    <img src="/img/ordenar.jpg" class="card-img-top" alt="Ordenar">
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center py-3">Realizar una orden</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="card">
+                                    <img src="/img/pedidos.jpg" class="card-img-top" alt="Pedidos">
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center py-3">Lista de órdenes</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script
+            src="https://kit.fontawesome.com/57265b4464.js"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
