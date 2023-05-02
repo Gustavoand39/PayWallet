@@ -4,19 +4,28 @@
     box-sizing: border-box;
 }
 
+// Styles
+.border-style {
+    border-radius: 10px;
+}
+
+.btn-style {
+    width: 40px;
+    border-radius: 25%;
+}
+
+.height-style {
+    height: 91.5vh;
+}
+
+// Index
 .body-index {
-    background: rgba(gray, 0.5);
     background-image: url("../img/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-position: center;
 }
 
 .card-login {
     height: 100vh;
-}
-
-.bg-login {
-    border-radius: 10px;
 }
