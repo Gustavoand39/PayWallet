@@ -10,42 +10,44 @@
     </head>
     <body>
         
-        <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container-fluid">
-                
-                <div class="collapse navbar-collapse">
-                    <div class="navbar-nav">
-                        <a href="#" class="nav-link">Pedidos</a>
-                        <a href="#" class="nav-link active" aria-current="page">Inventario</a>
+        <header>
+            <nav class="navbar navbar-expand navbar-dark background-primary">
+                <div class="container-fluid">
+                    
+                    <div class="collapse navbar-collapse">
+                        <div class="navbar-nav">
+                            <a href="#" class="nav-link">Pedidos</a>
+                            <a href="#" class="nav-link active" aria-current="page">Inventario</a>
+                        </div>
                     </div>
+                    
+                    <form class="d-flex">
+                        <button class="btn btn-light" type="submit">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                        <input
+                            class="form-control bg-light mx-2"
+                            type="search"
+                            placeholder="Buscar"
+                            aria-label="Search"
+                        />
+                        <button class="btn btn-light" type="submit">Buscar</button>
+                    </form>
+                    
                 </div>
-                
-                <form class="d-flex">
-                    <button class="btn btn-light" type="submit">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </button>
-                    <input
-                        class="form-control mx-2"
-                        type="search"
-                        placeholder="Buscar"
-                        aria-label="Search"
-                    />
-                    <button class="btn btn-light" type="submit">Buscar</button>
-                </form>
-                
-            </div>
-        </nav>
+            </nav>
+        </header>
 
         <main">
             <div class="container">
-                <div class="row bg-dark bg-opacity-10 px-4 py-3 my-5 border-style">
+                <div class="row background-secondary px-4 py-3 my-5 border-style">
                     <div class="col-12">
-                        <div class="row d-flex justify-content-center align-items-center bg-white p-1 my-3 border-style">
+                        <div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
                             <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
                                 <h4 class="me-2">Nombre del platillo</h4>
                             </div>
                             <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
-                                <button class="btn-info btn-style p-1" title="Editar">
+                                <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
                                 <button class="btn-danger btn-style p-1" title="Eliminar">
@@ -54,12 +56,12 @@
                             </div>
                         </div>
                         
-                        <div class="row d-flex justify-content-center align-items-center bg-white p-1 my-3 border-style">
+                        <div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
                             <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
                                 <h4 class="me-2">Nombre del platillo</h4>
                             </div>
                             <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
-                                <button class="btn-info btn-style p-1" title="Editar">
+                                <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
                                 <button class="btn-danger btn-style p-1" title="Eliminar">
@@ -68,12 +70,12 @@
                             </div>
                         </div>
 
-                        <div class="row d-flex justify-content-center align-items-center bg-white p-1 my-3 border-style">
+                        <div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
                             <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
                                 <h4 class="me-2">Nombre del platillo</h4>
                             </div>
                             <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
-                                <button class="btn-info btn-style p-1" title="Editar">
+                                <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
                                 <button class="btn-danger btn-style p-1" title="Eliminar">
@@ -87,11 +89,123 @@
             </div>
 
             <!-- Botón flotante -->
-            <div class="fixed-bottom text-end m-3">
-                <a href="#" class="btn btn-floating btn-lg btn-primary">
+            <div class="fixed-bottom text-end m-4">
+                <a href="#" class="btn btn-floating btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add">
                     <i class="fas fa-plus"></i>
                 </a>
-            </div>              
+            </div>
+            
+            <!-- Ventana modal para editar -->
+            <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="modal-edit" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar platillo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="mb-3">
+                                                    <label for="name-edit" class="form-label">Nombre del platillo:</label>
+                                                    <input type="text" id="saucer-edit" class="form-control" />
+                                                </div>
+                            
+                                                <div class="mb-3">
+                                                    <label for="price-edit" class="form-label">Precio:</label>
+                                                    <input type="number" id="price-edit" class="form-control"/>
+                                                </div>
+                    
+                                                <div class="mb-3">
+                                                    <label for="category-edit" class="form-label">Categoría:</label>
+                                                    <select class="form-select" id="category-edit">
+                                                        <option value="" selected disabled hidden>Selecciona una categoría</option>
+                                                        <option value="1">Alimentos</option>
+                                                        <option value="2">Bebidas</option>
+                                                        <option value="3">Fruta</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="image-edit" class="form-label">Imagen:</label>
+                                                    <input type="file" id="image-edit" class="form-control" accept="image/jpeg,image/png"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin de la ventana modal para editar -->
+
+            <!-- Ventana modal para agregar -->
+            <div class="modal fade" id="modal-add" tabindex="-1" aria-labelledby="modal-add" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Agregar platillo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="mb-3">
+                                                    <label for="name-edit" class="form-label">Nombre del platillo:</label>
+                                                    <input type="text" id="saucer-edit" class="form-control" />
+                                                </div>
+                            
+                                                <div class="mb-3">
+                                                    <label for="price-edit" class="form-label">Precio:</label>
+                                                    <input type="number" id="price-edit" class="form-control"/>
+                                                </div>
+                    
+                                                <div class="mb-3">
+                                                    <label for="category-edit" class="form-label">Categoría:</label>
+                                                    <select class="form-select" id="category-edit">
+                                                        <option value="" selected disabled hidden>Selecciona una categoría</option>
+                                                        <option value="1">Alimentos</option>
+                                                        <option value="2">Bebidas</option>
+                                                        <option value="3">Fruta</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="image-edit" class="form-label">Imagen:</label>
+                                                    <input type="file" id="image-edit" class="form-control" accept="image/jpeg,image/png"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin de la ventana modal para editar -->
 
         </main>
 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva orden</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar navbar-expand navbar-dark background-primary">
+            <div class="container-fluid">
+    
+                <button class="btn bg-light px-3 py-1">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </button>
+    
+                <form class="d-flex">
+                    <button class="btn btn-light" type="submit">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                    <input
+                        class="form-control bg-light mx-2"
+                        type="search"
+                        placeholder="Buscar"
+                        aria-label="Search"
+                    />
+                    <button class="btn btn-light" type="submit">Buscar</button>
+                </form>
+    
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- parte izquierda -->
+                <div class="col-5 d-flex flex-column justify-content-between height-style border-end">
+
+                    <div>
+                        <div class="row border-bottom d-flex justify-content-evenly align-items-center text-center py-2 mt-3">
+                            <div class="col-3">
+                                <h5>Producto</h5>
+                            </div>
+    
+                            <div class="col-3">
+                                <h5>Cantidad</h5>
+                            </div>
+    
+                            <div class="col-3">
+                                <h5>Precio</h5>
+                            </div>
+                        </div>
+
+                        <!-- Template info-template -->
+    
+                        <div class="row border-bottom d-flex justify-content-evenly align-items-center text-center py-1">
+                            <div class="col-3">
+                                <span>Nombre del producto</span>
+                            </div>
+    
+                            <div class="col-3">
+                                <span>1</span>
+                            </div>
+    
+                            <div class="col-3">
+                                <span>$<span>00.00</span></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div>
+                        <div class="border-top pt-3">
+                            <div class="d-flex justify-content-between align-items-center py-2">
+                                <h5 class="mb-0 fw-bold">Total:</h5>
+                                <span class="fw-bold">$ <span>00.00</span> </span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center py-2">
+                                <h5 class="mb-0 fw-bold">Cliente:</h5>                             
+                                <input type="text" class="text-center">
+                            </div>
+                        </div>
+
+                        <div class="py-2 text-end">
+                            <button type="button" class="btn btn-outline-primary me-2">Editar orden</button>
+                            <button type="button" class="btn btn-primary">Realizar orden</button>
+                        </div>
+                    </div>
+                       
+                </div>
+
+                <!-- parte derecha -->
+                <div class="col-7 height-style overflow-scroll px-4 py-3">
+                    <h3 class="mb-3">Alimentos</h3>
+                    <div class="row">
+
+                        <div class="col-4 mb-3">
+                            <div class="card card-style">
+                                <img src="img/platillos/hamburguesa.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <p class="card-text text-center">Hamburguesa</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <h3 class="mb-3">Bebidas</h3>
+                    <div class="row">
+                        
+                    </div>
+
+                    <h3 class="mb-3">Otros</h3>
+                    <div class="row">
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script
+        src="https://kit.fontawesome.com/57265b4464.js"
+        crossorigin="anonymous"
+    ></script>
+</body>
+</html>

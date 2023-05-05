@@ -9,57 +9,58 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container-fluid">
-
-                <div class="collapse navbar-collapse">
-                    <div class="navbar-nav">
-                        <a href="#" class="nav-link active" aria-current="page">Agregar</a>
-                        <a href="#" class="nav-link">Consultar</a>
+        
+        <header>
+            <nav class="navbar navbar-expand navbar-dark background-primary">
+                <div class="container-fluid">
+    
+                    <div class="collapse navbar-collapse">
+                        <div class="navbar-nav">
+                            <a href="#" class="nav-link active" aria-current="page">Agregar</a>
+                            <a href="#" class="nav-link">Consultar</a>
+                        </div>
                     </div>
+    
+                    <form class="d-flex">
+                        <button class="btn btn-light" type="submit">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                        <input
+                            class="form-control bg-light mx-2"
+                            type="search"
+                            placeholder="Buscar"
+                            aria-label="Search"
+                        />
+                        <button class="btn btn-light" type="submit">Buscar</button>
+                    </form>
+    
                 </div>
-
-                <form class="d-flex">
-                    <button class="btn btn-light" type="submit">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </button>
-                    <input
-                        class="form-control mx-2"
-                        type="search"
-                        placeholder="Buscar"
-                        aria-label="Search"
-                    />
-                    <button class="btn btn-light" type="submit">Buscar</button>
-                </form>
-
-            </div>
-        </nav>
+            </nav>
+        </header>
 
         <main">
             <div class="container">
                 <div class="row d-flex justify-content-center align-items-center height-style">
                     <div class="col-12 col-lg-10">
-                        <form action="#" class="bg-dark bg-opacity-10 px-5 py-4 border-style">
+                        <form action="#" class="background-secondary px-5 py-4 border-style">
                             <div class="row my-3">
-
-                                <div class="col-12 mb-3">
-                                    <h2 class="text-center text-secondary">Nuevo usuario</h2>
+                                <div class="col-12 mb-4">
+                                    <h2 class="text-center color-primary">Nuevo usuario</h2>
                                 </div>
-
+                        
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-4">
-                                        <label for="name" class="form-label">Nombre(s):</label>
+                                        <label for="name" class="form-label fw-bold">Nombre(s):</label>
                                         <input type="text" id="name" class="form-control" />
                                     </div>
-                
+                        
                                     <div class="mb-4">
-                                        <label for="lastName" class="form-label">Apellidos:</label>
+                                        <label for="lastName" class="form-label fw-bold">Apellidos:</label>
                                         <input type="text" id="lastName" class="form-control" />
                                     </div>
-        
+                        
                                     <div class="mb-4">
-                                        <label for="carreer" class="form-label">Carrera:</label>
+                                        <label for="carreer" class="form-label fw-bolder">Carrera:</label>
                                         <select class="form-select" id="carreer">
                                             <option value="" selected disabled hidden>Selecciona una carrera</option>
                                             <option value="1">Industrial</option>
@@ -72,27 +73,27 @@
                                         </select>
                                     </div>
                                 </div>
-
+                        
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-4">
-                                        <label for="numberControl" class="form-label">Número de control:</label>
+                                        <label for="numberControl" class="form-label fw-bold">Número de control:</label>
                                         <input type="text" id="numberControl" class="form-control" />
                                     </div>
-                
+                        
                                     <div class="mb-4">
-                                        <label for="password" class="form-label">Contraseña:</label>
+                                        <label for="password" class="form-label fw-bold">Contraseña:</label>
                                         <input type="password" id="password" class="form-control" />
                                     </div>
-
+                        
                                     <div class="mb-4">
-                                        <label for="confirmPassword" class="form-label">Confirmar contraseña:</label>
+                                        <label for="confirmPassword" class="form-label fw-bold">Confirmar contraseña:</label>
                                         <input type="password" id="confirmPassword" class="form-control" />
                                     </div>
                                 </div>
                             </div>
-        
-                            <div>
-                                <button type="submit" class="form-control btn-info">Agregar</button>
+                        
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn background-primary text-white">Agregar</button>
                             </div>
                         </form>
                     </div>
