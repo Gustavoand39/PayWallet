@@ -1,0 +1,15 @@
+<!-- Plantilla para mostrar a los usuarios en Users -->
+<div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
+    <div class="col-10 d-flex align-items-center">
+        <h4 class="me-2">{{nombre_usuario}}</h4> <!-- Nombre de usuario -->
+        <p class="text-dark text-opacity-50">{{noControl_usuario}}</p> <!-- Número de control -->
+    </div>
+    <div class="col-2 d-flex justify-content-center align-items-center gap-2">
+        <button class="btn-info p-1 btn-style" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
+            <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="btn-danger p-1 btn-style" title="Eliminar">
+            <i class="fa-solid fa-trash-can"></i>
+        </button>
+    </div>
+</div>

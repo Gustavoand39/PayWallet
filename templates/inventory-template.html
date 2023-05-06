@@ -1,0 +1,14 @@
+<!-- Plantilla para mostrar los platillos en Inventory -->
+<div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
+    <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
+        <h4 class="me-2">{{platillo_inventario}}</h4> <!-- Nombre del platillo -->
+    </div>
+    <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
+        <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
+            <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="btn-danger btn-style p-1" title="Eliminar">
+            <i class="fa-solid fa-trash-can"></i>
+        </button>
+    </div>
+</div>
