@@ -1,0 +1,37 @@
+// Reset de estilos
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.border-style {
+    border-radius: 10px;
+}
+
+.btn-style {
+    width: 40px;
+    border-radius: 25%;
+}
+
+.height-style {
+    height: 91.5vh;
+    max-height: 91.5vh;
+}
+
+.card-style {
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+    }
+
+    &:active {
+        transform: scale(0.95);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+}

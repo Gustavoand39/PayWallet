@@ -6,53 +6,96 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Ingresar</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/main.css" />
     </head>
 
     <body class="body-index">
         <main class="container">
-            <div class="row d-flex justify-content-center align-items-center card-login">
+            <div
+                class="row d-flex justify-content-center align-items-center card-login"
+            >
                 <div class="col-8">
-                    
                     <div class="row bg-login p-4 bg-light border-style">
                         <!-- Logo -->
-                        <div class="col-lg-4 d-none d-lg-flex d-flex justify-content-center align-items-center">
-                            <img src="img/logo.png" class="img-fluid" alt="Logo" />
+                        <div
+                            class="col-lg-4 d-none d-lg-flex d-flex justify-content-center align-items-center"
+                        >
+                            <img
+                                src="img/logo.png"
+                                class="img-fluid"
+                                alt="Logo"
+                            />
                         </div>
 
                         <!-- Formulario -->
-                        <div class="col-12 col-lg-8 ">
+                        <div class="col-12 col-lg-8">
                             <div class="row">
                                 <div class="col">
-                                    <h2 class="text-center mb-4">¡Bienvenido!</h2>
-                                    <div class="row d-flex justify-content-center align-items-center">
+                                    <h2 class="text-center mb-4">
+                                        ¡Bienvenido!
+                                    </h2>
+                                    <div
+                                        class="row d-flex justify-content-center align-items-center"
+                                    >
                                         <div class="col-12 col-lg-10">
-                                            <form action="#" autocomplete="off">
+                                            <form action="#">
+                                                <!-- Correo electrónico -->
                                                 <div class="mb-4">
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        placeholder="Nombre de usuario"
+                                                        placeholder="Correo electrónico"
+                                                        id="login_email"
                                                     />
                                                 </div>
+                                                <!-- Contraseña -->
                                                 <div class="mb-4">
-                                                    <input
-                                                        type="password"
-                                                        class="form-control"
-                                                        placeholder="Contraseña"
-                                                    />
+                                                    <div class="input-group">
+                                                        <input
+                                                            type="password"
+                                                            class="form-control"
+                                                            placeholder="Contraseña"
+                                                            id="login_pass"
+                                                        />
+                                                        <!-- Mostrar/ocultar contraseña -->
+                                                        <button
+                                                            type="button"
+                                                            class="btn btn-outline-secondary"
+                                                            onclick="handdlerPassword()"
+                                                            id="btn_sPass"
+                                                        >
+                                                            <i
+                                                                class="fa-solid fa-eye"
+                                                                id="showPass"
+                                                            ></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div class="mb-4">
-                                                    <select class="form-select" name="profile">
-                                                        <option value="" selected disabled hidden>Selecciona un perfil</option>
-                                                        <option value="1">Empleado</option>
-                                                        <option value="2">Administrador</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-4">
-                                                    <button type="submit" class="form-control btn-success">Iniciar sesión</button>
+                                                <!-- Botón de iniciar sesión -->
+                                                <div class="mb-3">
+                                                    <button
+                                                        type="button"
+                                                        class="form-control btn-success"
+                                                        id="login_btn"
+                                                    >
+                                                        Iniciar sesión
+                                                    </button>
                                                 </div>
                                             </form>
+                                            <!-- Enlace para recuperar contraseña -->
+                                            <div
+                                                class="d-flex justify-content-end mb-3"
+                                            >
+                                                <a
+                                                    href="#"
+                                                    class="text-decoration-none link-a"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modal_recoverPass"
+                                                    id="forgotten_pass"
+                                                    >¿Olvidaste tu
+                                                    contraseña?</a
+                                                >
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -61,9 +104,75 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal para recuperar la contraseña -->
+            <div
+                class="modal fade"
+                id="modal_recoverPass"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Recupera tu contraseña</h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="p-2">
+                                <label class="form-label mb-3" for="modal_email">Correo electrónico:</label>
+                                <input
+                                    type="email"
+                                    class="form-control mb-4"
+                                    id="modal_email"
+                                    name="modal_email"
+                                    required
+                                />
+                                <button type="button" class="btn btn-success form-control" id="modal_btn">Enviar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toast de error -->
+            <div
+                class="toast align-items-center bg-danger"
+                role="alert"
+                id="toast_error"
+                aria-live="assertive"
+                aria-atomic="true"
+            >
+                <div class="d-flex">
+                    <div class="toast-body text-white">
+                        No se pudo iniciar sesión. Intente de nuevo.
+                    </div>
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white me-2 m-auto"
+                        data-bs-dismiss="toast"
+                        aria-label="Close"
+                    ></button>
+                </div>
+            </div>
         </main>
 
+        <!-- Script de Bootstrap -->
         <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- Script de Font Awesome -->
+        <script
+            src="https://kit.fontawesome.com/57265b4464.js"
+            crossorigin="anonymous"
+        ></script>
+        <!-- Script de Firebase -->
+        <script type="module" src="js/firebase.js"></script>
+        <!-- Script de la página -->
         <script src="js/main.js"></script>
     </body>
 </html>

@@ -1,0 +1,32 @@
+.body-index {
+    background-image: url("../img/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card-login { height: 100vh; }
+
+.link-a {
+    color: #7F8C8D;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+        color: #343a40;
+        text-decoration: underline;
+    }
+}
+
+/* Estilos del toast */
+.overlay-container {
+    position: fixed;
+    z-index: 100;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 15px;
+    z-index: 1000;
+}
