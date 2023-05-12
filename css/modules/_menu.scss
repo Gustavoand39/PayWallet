@@ -1,0 +1,18 @@
+.btn-logout {
+    transition: background-color 0.2s ease-in-out;
+
+    &:active {
+        background-color: $geyser;
+        transform: scale(0.9);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.25rem rgba($chathams-blue, 0.25);
+    }
+}
+
+.custom-link {
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.2s ease-in-out;
+}

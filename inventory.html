@@ -11,29 +11,20 @@
     <body>
         
         <header>
-            <nav class="navbar navbar-expand navbar-dark background-primary">
+            <nav class="navbar navbar-dark navbar-expand background-primary">
                 <div class="container-fluid">
                     
                     <div class="collapse navbar-collapse">
                         <div class="navbar-nav">
-                            <a href="#" class="nav-link">Pedidos</a>
-                            <a href="#" class="nav-link active" aria-current="page">Inventario</a>
+                            <a href="#" class="nav-link custom-link" id="nav_1">Pedidos</a>
+                            <a href="#" class="nav-link custom-link active" aria-current="page" id="nav_2">Inventario </a>
                         </div>
                     </div>
-                    
-                    <form class="d-flex">
-                        <button class="btn btn-light" type="submit">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                        </button>
-                        <input
-                            class="form-control bg-light mx-2"
-                            type="search"
-                            placeholder="Buscar"
-                            aria-label="Search"
-                        />
-                        <button class="btn btn-light" type="submit">Buscar</button>
-                    </form>
-                    
+    
+                    <button class="btn btn-light btn-logout" type="button" id="logout_btn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+    
                 </div>
             </nav>
         </header>
@@ -210,11 +201,14 @@
 
         </main>
 
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script
-            src="https://kit.fontawesome.com/57265b4464.js"
-            crossorigin="anonymous"
-        ></script>
+        <!-- Script de Bootstrap -->
+        <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+        <!-- Script de Font Awesome -->
+        <script src="https://kit.fontawesome.com/57265b4464.js" crossorigin="anonymous"></script>
+        <!-- Script de Firebase -->
+        <script type="module" src="js/inventory/inventory-firebase.js"></script>
+        <!-- Script de la página -->
+        <script src="js/inventory/inventory.js"></script>
     </body>   
 
 </html>

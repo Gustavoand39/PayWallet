@@ -11,21 +11,19 @@
     <body>
         
         <header>
-            <nav class="navbar navbar-expand navbar-dark background-primary">
+            <nav class="navbar navbar-dark navbar-expand background-primary">
                 <div class="container-fluid">
                     
                     <div class="collapse navbar-collapse">
                         <div class="navbar-nav">
-                            <a href="#" class="nav-link active" aria-current="page">Pedidos</a>
-                            <a href="#" class="nav-link">Inventario </a>
+                            <a href="#" class="nav-link custom-link active" aria-current="page" id="nav_1">Pedidos</a>
+                            <a href="#" class="nav-link custom-link" id="nav_2">Inventario </a>
                         </div>
                     </div>
     
-                    <form class="d-flex">
-                        <button class="btn btn-light" type="button">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                        </button>
-                    </form>
+                    <button class="btn btn-light btn-logout" type="button" id="logout_btn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
     
                 </div>
             </nav>
@@ -37,7 +35,7 @@
                     <div class="col-11">
                         <div class="row">
 
-                            <div class="col-6">
+                            <div class="col-6" id="newOrder">
                                 <div class="card card-style">
                                     <img src="/img/ordenar.jpg" class="card-img-top" alt="Ordenar">
                                     <div class="card-body">
@@ -46,7 +44,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-6" id="orders">
                                 <div class="card card-style">
                                     <img src="/img/pedidos.jpg" class="card-img-top" alt="Pedidos">
                                     <div class="card-body">
@@ -61,10 +59,13 @@
             </div>
         </main>
 
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script
-            src="https://kit.fontawesome.com/57265b4464.js"
-            crossorigin="anonymous"
-        ></script>
+        <!-- Script de Bootstrap -->
+        <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+        <!-- Script de Font Awesome -->
+        <script src="https://kit.fontawesome.com/57265b4464.js" crossorigin="anonymous"></script>
+        <!-- Script de Firebase -->
+        <script type="module" src="js/menu/menu-firebase.js"></script>
+        <!-- Script de la página -->
+        <script src="js/menu/menu.js"></script>
     </body>
 </html>

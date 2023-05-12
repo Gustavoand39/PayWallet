@@ -1,7 +1,4 @@
-/* Index */
-const email = document.getElementById('login_email');
 const pass = document.getElementById('login_pass');
-const btn = document.getElementById('login_btn');
 const showPass = document.getElementById('showPass');
 const btn_sPass = document.getElementById('btn_sPass');
 

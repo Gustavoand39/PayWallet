@@ -14,12 +14,12 @@
             <nav class="navbar navbar-expand navbar-dark background-primary">
                 <div class="container-fluid">
     
-                    <button class="btn bg-light px-3 py-1">
+                    <button class="btn bg-light px-3 py-1" id="btn_return">
                         <i class="fa-solid fa-arrow-left-long"></i>
                     </button>
     
                     <form class="d-flex">
-                        <button class="btn btn-light" type="submit">
+                        <button class="btn btn-light" type="submit" id="logout_btn">
                             <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                         <input
@@ -78,14 +78,21 @@
                             </div>
                         </div>
 
+                        
+
                     </div>
                 </div>
             </div>
         </main>
 
-        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- Script de Bootstrap -->
+        <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+        <!-- Script de FontAwesome -->
         <script src="https://kit.fontawesome.com/57265b4464.js" crossorigin="anonymous"></script>
-        <script src="js/main.js"></script>
+        <!-- Script de Firebase -->
+        <script type="module" src="js/orders/orders-firebase.js"></script>
+        <!-- Script de la página -->
+        <script src="js/orders/orders.js"></script>
     </body>   
 
 </html>
