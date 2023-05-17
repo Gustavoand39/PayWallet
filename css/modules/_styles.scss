@@ -12,6 +12,21 @@
 .btn-style {
     width: 40px;
     border-radius: 25%;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+    
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:active {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
 }
 
 .height-style {

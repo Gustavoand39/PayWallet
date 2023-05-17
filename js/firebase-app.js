@@ -1,35 +1,77 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import {
     getAuth,
     signInWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
-    onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc,
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+// ! Ocultar las variables de configuración de Firebase
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyA4noi5SgVaVoWKKMo7Thw-lny4mtNMwT0",
-    authDomain: "paywallet-7ed8a.firebaseapp.com",
-    projectId: "paywallet-7ed8a",
-    storageBucket: "paywallet-7ed8a.appspot.com",
-    messagingSenderId: "135314549497",
-    appId: "1:135314549497:web:50156cb26cfa3b364c5028",
+    apiKey: "AIzaSyBLwOeyYbtfaa6N8Jp5vWkRff70IxdFX8M",
+    authDomain: "paywallet-e4c84.firebaseapp.com",
+    projectId: "paywallet-e4c84",
+    storageBucket: "paywallet-e4c84.appspot.com",
+    messagingSenderId: "869136245495",
+    appId: "1:869136245495:web:88e3525e981a732441a9f2",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-/* Funciones de Firebase */
+/* Función para obtener los datos de la colección de Firebase */
+export function getDb(collectionName) {
+    const collectionRef = collection(db, collectionName); // Obtener la colección
+    const object = {}; // Crear un objeto para guardar los documentos
+    // Retornar una promesa
+    return new Promise((resolve, reject) => {
+        getDocs(collectionRef) // Obtener los documentos de la colección
+            .then((querySnapshot) => {
+                // Recorrer los documentos
+                querySnapshot.forEach((doc) => {
+                    // Guardar el id como clave y los datos como valor
+                    object[doc.id] = doc.data();
+                });
+                resolve(object); // Retornar un objeto con la colección
+            })
+            .catch((error) => {
+                reject(error); // Retornar el error
+            });
+    });
+}
+
+// Función para agregar un documento a la colección
+export function addDocument(collectionName, data) {
+    const collectionRef = collection(db, collectionName); // Obtener la colección
+
+    addDoc(collectionRef, data) // Agregar el documento a la colección
+        .then(() => {
+            alert("Orden completada");
+            // window.location.href = "menu.html"; // Redirigir a la página del menú
+        })
+        .catch((error) => {
+            console.error(error); // Manejar el error si ocurre
+        });
+}
+
+/* Funciones para manejar la sesión del usuario */
 
 // Iniciar sesión
 export function login(emailValue, passValue, toast_error) {
     signInWithEmailAndPassword(auth, emailValue, passValue)
         .then(() => {
             /* Si es correcto */
-            console.log(emailValue, passValue);
             window.location.href = "menu.html";
         })
         .catch(() => {
@@ -56,32 +98,19 @@ export function logout(id, location) {
 // Recuperar contraseña
 export function recoverPass(modal_email, modal_recoverPass, msg) {
     sendPasswordResetEmail(auth, modal_email)
-    .then(() => {
-        alert(msg);
-        modal_recoverPass.hide();
-    })
-    .catch((error) => {
-        alert(error.message);
-    });
+        .then(() => {
+            alert(msg);
+            modal_recoverPass.hide();
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
 }
 
-// Botón de regresar página
+/* Botón de regresar página */
 export function returnPage(id, location) {
     const btn_return = document.getElementById(id);
     btn_return.addEventListener("click", () => {
         window.location.href = location;
-    });
-}
-
-// Para probar si el usuario está logeado o no (Eliminar en producción)
-export function autenticacion() {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // El usuario está autenticado
-            console.log("Usuario autenticado:", user.email);
-        } else {
-            // El usuario no está autenticado
-            console.log("Usuario no autenticado");
-        }
     });
 }

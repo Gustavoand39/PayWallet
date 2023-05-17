@@ -1,170 +1,126 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva orden</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
-</head>
-<body>
-    
-    <header>
-        <nav class="navbar navbar-expand navbar-dark background-primary">
-            <div class="container-fluid">
-    
-                <button class="btn bg-light px-3 py-1" id="btn_return">
-                    <i class="fa-solid fa-arrow-left-long"></i>
-                </button>
-    
-                <form class="d-flex">
-                    <button class="btn btn-light" type="button" id="logout_btn">
-                        <i class="fa-solid fa-right-from-bracket"></i>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Nueva orden</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand navbar-dark background-primary">
+                <div class="container-fluid">
+                    <button class="btn bg-light px-3 py-1" id="btn_return">
+                        <i class="fa-solid fa-arrow-left-long"></i>
                     </button>
-                    <input
-                        class="form-control bg-light mx-2"
-                        type="search"
-                        id="search"
-                        placeholder="Buscar"
-                        aria-label="Search"
-                    />
-                    <button class="btn btn-light" type="button" id="btn_search">Buscar</button>
-                </form>
-    
-            </div>
-        </nav>
-    </header>
 
-    <main>
-        <div class="container-fluid">
-            <div class="row">
-                <!-- parte izquierda -->
-                <div class="col-5 d-flex flex-column justify-content-between height-style border-end">
-
-                    <div>
-                        <div class="row border-bottom d-flex justify-content-evenly align-items-center text-center py-2 mt-3">
-                            <div class="col-3">
-                                <h5>Producto</h5>
-                            </div>
-    
-                            <div class="col-3">
-                                <h5>Cantidad</h5>
-                            </div>
-    
-                            <div class="col-3">
-                                <h5>Precio</h5>
-                            </div>
-                        </div>
-
-                        <!-- Template info-template -->
-    
-                        <div class="row border-bottom d-flex justify-content-evenly align-items-center text-center py-1">
-                            <div class="col-3">
-                                <span>Nombre del producto</span>
-                            </div>
-    
-                            <div class="col-3">
-                                <span>1</span>
-                            </div>
-    
-                            <div class="col-3">
-                                <span>$<span>00.00</span></span>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div>
-                        <div class="border-top py-2">
-                            <div class="d-flex justify-content-between align-items-center py-2">
-                                <h5 class="mb-0 fw-bold">Total:</h5>
-                                <span class="fw-bold">$ <span>00.00</span> </span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center py-2">
-                                <h5 class="mb-0 fw-bold">Cliente:</h5>                             
-                                <input type="text" class="text-center">
-                            </div>
-                        </div>
-
-                        <div class="py-3 text-end">
-                            <button type="button" class="btn btn-outline-primary me-2">Editar orden</button>
-                            <button type="button" class="btn btn-success">Realizar orden</button>
-                        </div>
-                    </div>
-                       
+                    <form class="d-flex">
+                        <button
+                            class="btn btn-light"
+                            type="button"
+                            id="logout_btn"
+                        >
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                        <input
+                            class="form-control bg-light mx-2"
+                            type="search"
+                            id="search"
+                            placeholder="Buscar"
+                            aria-label="Search"
+                        />
+                        <button
+                            class="btn btn-light"
+                            type="button"
+                            id="btn_search"
+                        >
+                            Buscar
+                        </button>
+                    </form>
                 </div>
+            </nav>
+        </header>
 
-                <!-- parte derecha -->
-                <div class="col-7 height-style overflow-scroll px-4 py-3">
-                    
-                    <h3 class="mb-3">Platillos del día</h3>
-                    <div class="row">
-                        
-                    </div>
-                    
-                    <h3 class="mb-3">Alimentos</h3>
-                    <div class="row">
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- parte izquierda -->
+                    <div class="col-5 d-flex flex-column justify-content-between height-style border-end">
+                        <!-- Aquí se mostrarán los productos ordenados -->
+                        <div class="scroll-style">
+                            <!-- Header -->
+                            <div class="row border-bottom d-flex justify-content-evenly text-center py-3 mt-1" >
+                                <div class="col-6">
+                                    <h5>Producto</h5>
+                                </div>
 
-                        <div class="col-4 mb-3">
-                            <div class="card card-style">
-                                <img src="img/platillos/hamburguesa.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <p class="card-text text-center">Hamburguesa</p>
+                                <div class="col-6">
+                                    <h5>Precio</h5>
                                 </div>
                             </div>
+
+                            <!-- Templates -->
+                            <div id="orders"></div>
                         </div>
 
-                        <div class="col-4 mb-3">
-                            <div class="card card-style">
-                                <img src="img/platillos/hamburguesa.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <p class="card-text text-center">Hamburguesa</p>
+                        <div>
+                            <div class="border-top py-2">
+                                <div class="d-flex justify-content-between align-items-center py-2">
+                                    <h5 class="mb-0 fw-bold">Total:</h5>
+                                    <span class="fw-bold">
+                                        $<span id="total">00</span>.00
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center py-2">
+                                    <h5 class="mb-0 fw-bold">Cliente:</h5>
+                                    <input
+                                        type="text"
+                                        class="text-center"
+                                        id="nameClient"
+                                    />
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-4 mb-3">
-                            <div class="card card-style">
-                                <img src="img/platillos/hamburguesa.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <p class="card-text text-center">Hamburguesa</p>
-                                </div>
+                            <div class="py-3 text-end">
+                                <button
+                                    type="button"
+                                    class="btn background-primary text-white"
+                                    id="orderComplete"
+                                >
+                                    Realizar orden
+                                </button>
                             </div>
                         </div>
-                        
                     </div>
 
-                    
-                    <h3 class="mb-3">Bebidas</h3>
-                    <div class="row">
-                        
-                    </div>
-                    
-                    <h3 class="mb-3">Postres</h3>
-                    <div class="row">
-                        
-                    </div>
+                    <!-- parte derecha -->
+                    <div class="col-7 height-style px-4 py-3 scroll-style">
+                        <h3 class="mb-4">Platillos del día</h3>
+                        <div class="row" id="platilloDia"></div>
 
-                    <h3 class="mb-3">Variedades frescas</h3>
-                    <div class="row">
-                        
-                    </div>
+                        <h3 class="mb-4">Alimentos</h3>
+                        <div class="row" id="alimentos"></div>
 
+                        <h3 class="mb-4">Bebidas</h3>
+                        <div class="row" id="bebidas"></div>
+
+                        <h3 class="mb-4">Postres</h3>
+                        <div class="row" id="postres"></div>
+
+                        <h3 class="mb-4">Variedades frescas</h3>
+                        <div class="row" id="variedades"></div>
+                    </div>
                 </div>
-
             </div>
-        </div>
-    </main>
+        </main>
 
-    <!-- Script de Bootstrap -->
-    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- Script de FontAwesome -->
-    <script src="https://kit.fontawesome.com/57265b4464.js" crossorigin="anonymous"></script>
-    <!-- Script de Firebase -->
-    <script type="module" src="js/new_order/newOrder-firebase.js"></script>
-    <!-- Script de la página -->    
-    <script src="js/new_order/newOrder.js"></script>
-</body>
+        <!-- Script de Bootstrap -->
+        <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+        <!-- Script de FontAwesome -->
+        <script src="https://kit.fontawesome.com/57265b4464.js" crossorigin="anonymous"></script>
+        <!-- Script de Firebase -->
+        <script type="module" src="js/new_order/newOrder-firebase.js"></script>
+    </body>
 </html>
