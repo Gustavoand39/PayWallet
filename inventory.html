@@ -21,7 +21,7 @@
                         </div>
                     </div>
     
-                    <button class="btn btn-light btn-logout" type="button" id="logout_btn">
+                    <button class="btn btn-light btn-logout btn-style" type="button" id="logout_btn">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </button>
     
@@ -29,66 +29,24 @@
             </nav>
         </header>
 
-        <main">
+        <main>
             <div class="container">
-                <div class="row background-secondary px-4 py-3 my-5 border-style">
-                    <div class="col-12">
-                                               
-                        <div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
-                            <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
-                                <h4 class="me-2">Nombre del platillo</h4>
-                            </div>
-                            <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
-                                <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
-                                    <i class="fa-solid fa-pen"></i>
-                                </button>
-                                <button class="btn-danger btn-style p-1" title="Eliminar">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
-                            <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
-                                <h4 class="me-2">Nombre del platillo</h4>
-                            </div>
-                            <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
-                                <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
-                                    <i class="fa-solid fa-pen"></i>
-                                </button>
-                                <button class="btn-danger btn-style p-1" title="Eliminar">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
-                            <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
-                                <h4 class="me-2">Nombre del platillo</h4>
-                            </div>
-                            <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
-                                <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
-                                    <i class="fa-solid fa-pen"></i>
-                                </button>
-                                <button class="btn-danger btn-style p-1" title="Eliminar">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </div>
-                        </div>
-
+                <div class="row">
+                    <div class="col-12 background-secondary px-5 py-4 my-5 border-style" id="containerInventory">
+                        <!-- Templates -->
                     </div>
                 </div>
             </div>
 
             <!-- Botón flotante -->
             <div class="fixed-bottom text-end m-4">
-                <a href="#" class="btn btn-floating btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add">
+                <a href="#" class="btn btn-floating btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add" id="btnAdd">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
             
             <!-- Ventana modal para editar -->
-            <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="modal-edit" aria-hidden="true">
+            <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="modal-edit" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -97,46 +55,63 @@
                         </div>
 
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col">
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label for="name-edit" class="form-label">Nombre del platillo:</label>
-                                                    <input type="text" id="saucer-edit" class="form-control" />
-                                                </div>
-                            
-                                                <div class="mb-3">
-                                                    <label for="price-edit" class="form-label">Precio:</label>
-                                                    <input type="number" id="price-edit" class="form-control"/>
-                                                </div>
-                    
-                                                <div class="mb-3">
-                                                    <label for="category-edit" class="form-label">Categoría:</label>
-                                                    <select class="form-select" id="category-edit">
-                                                        <option value="" selected disabled hidden>Selecciona una categoría</option>
-                                                        <option value="1">Alimentos</option>
-                                                        <option value="2">Bebidas</option>
-                                                        <option value="3">Fruta</option>
-                                                    </select>
-                                                </div>
+                            <form action="#">
+                                <div class="row p-2">
 
-                                                <div class="mb-3">
-                                                    <label for="image-edit" class="form-label">Imagen:</label>
-                                                    <input type="file" id="image-edit" class="form-control" accept="image/jpeg,image/png"/>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="nameEdit" class="form-label fw-bold">Nombre del platillo:</label>
+                                            <input type="text" id="nameEdit" class="form-control" />
+                                        </div>
+                    
+                                        <div class="mb-3">
+                                            <label for="priceEdit" class="form-label fw-bold">Precio:</label>
+                                            <input type="number" id="priceEdit" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="categoryEdit" class="form-label fw-bold">Categoría:</label>
+                                            <select class="form-select" id="categoryEdit">
+                                                <option value="0">Platillo del día</option>
+                                                <option value="1">Alimentos</option>
+                                                <option value="2">Bebidas</option>
+                                                <option value="3">Postres</option>
+                                                <option value="4">Variedades frescas</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="stockEdit" class="form-label fw-bold">Existencias:</label>
+                                            <div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="stockEdit" id="option1" value="1">
+                                                    <label class="form-check-label" for="option1">Sí</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="stockEdit" id="option2" value="2">
+                                                    <label class="form-check-label" for="option2">No</label>
                                                 </div>
                                             </div>
-
                                         </div>
-                                    </form>
+                                         
+                                    </div>
+
+                                    <!-- <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="imageEdit" class="form-label fw-bold">Imagen:</label>
+                                            <input type="file" id="imageEdit" class="form-control" accept="image/jpeg,image/png"/>
+                                        </div>
+                                    </div> -->
+
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Guardar cambios</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saveChanges">Guardar cambios</button>
                         </div>
                     </div>
                 </div>
@@ -144,60 +119,78 @@
             <!-- Fin de la ventana modal para editar -->
 
             <!-- Ventana modal para agregar -->
-            <div class="modal fade" id="modal-add" tabindex="-1" aria-labelledby="modal-add" aria-hidden="true">
+            <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="modal-add" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Agregar platillo</h5>
+                            <h5 class="modal-title">Editar platillo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col">
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label for="name-edit" class="form-label">Nombre del platillo:</label>
-                                                    <input type="text" id="saucer-edit" class="form-control" />
-                                                </div>
-                            
-                                                <div class="mb-3">
-                                                    <label for="price-edit" class="form-label">Precio:</label>
-                                                    <input type="number" id="price-edit" class="form-control"/>
-                                                </div>
-                    
-                                                <div class="mb-3">
-                                                    <label for="category-edit" class="form-label">Categoría:</label>
-                                                    <select class="form-select" id="category-edit">
-                                                        <option value="" selected disabled hidden>Selecciona una categoría</option>
-                                                        <option value="1">Alimentos</option>
-                                                        <option value="2">Bebidas</option>
-                                                        <option value="3">Fruta</option>
-                                                    </select>
-                                                </div>
+                            <form action="#">
+                                <div class="row p-2">
 
-                                                <div class="mb-3">
-                                                    <label for="image-edit" class="form-label">Imagen:</label>
-                                                    <input type="file" id="image-edit" class="form-control" accept="image/jpeg,image/png"/>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="nameAdd" class="form-label fw-bold">Nombre del platillo:</label>
+                                            <input type="text" id="nameAdd" class="form-control" />
+                                        </div>
+                    
+                                        <div class="mb-3">
+                                            <label for="priceAdd" class="form-label fw-bold">Precio:</label>
+                                            <input type="number" id="priceAdd" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="categoryAdd" class="form-label fw-bold">Categoría:</label>
+                                            <select class="form-select" id="categoryAdd">
+                                                <option value="" disabled hidden selected>Selecciona una categoría</option>
+                                                <option value="0">Platillo del día</option>
+                                                <option value="1">Alimentos</option>
+                                                <option value="2">Bebidas</option>
+                                                <option value="3">Postres</option>
+                                                <option value="4">Variedades frescas</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="stockAdd" class="form-label fw-bold">Existencias:</label>
+                                            <div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="stockAdd" id="option1_add" value="1">
+                                                    <label class="form-check-label" for="option1">Sí</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="stockAdd" id="option2_add" value="2">
+                                                    <label class="form-check-label" for="option2">No</label>
                                                 </div>
                                             </div>
-
                                         </div>
-                                    </form>
+                                         
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="imageAdd" class="form-label fw-bold">Imagen:</label>
+                                            <input type="file" id="imageAdd" class="form-control" accept="image/jpeg,image/png"/>
+                                        </div>
+                                    </div>
+
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Guardar cambios</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelPlate">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="addPlate">Agregar platillos</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Fin de la ventana modal para editar -->
+            <!-- Fin de la ventana modal para agregar -->
 
         </main>
 
@@ -210,51 +203,3 @@
     </body>   
 
 </html>
-
-
-<!-- 
-    <div class="row d-flex justify-content-center align-items-center bg-white p-2 my-3 border-style">
-    <div class="col-8 col-md-10 d-flex flex-column flex-lg-row align-items-center">
-        <h4 class="me-2">{{platillo_inventario}}</h4>
-    </div>
-    <div class="col-4 col-md-2 d-flex justify-content-center align-items-center gap-2">
-        <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal-edit">
-            <i class="fa-solid fa-pen"></i>
-        </button>
-        <button class="btn-danger btn-style p-1" title="Eliminar">
-            <i class="fa-solid fa-trash-can"></i>
-        </button>
-    </div>
-    </div>
-
-
-
-    <div class="row bg-white p-2 my-3 border-style" data-bs-toggle="collapse" data-bs-target="#details" aria-expanded="false" aria-controls="details">
-    <div class="col-10 d-flex align-items-center my-2">
-        <h4 class="me-2">{{nombre_orden}}</h4>
-        <i class="fa-solid fa-caret-down me-2 fs-4"></i>
-    </div>       
-
-    <div class="col-2 d-flex justify-content-center align-items-center gap-3 my-2">                                
-        <button class="btn-success p-1 btn-style" title="Completada">
-            <i class="fa-solid fa-check"></i>
-        </button>
-        <button class="btn-danger p-1 btn-style" title="Cancelada">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-    </div>   
-
-    <div class="col-12">
-        <div class="collapse" id="details">
-            <div class="row d-flex justify-content-evenly align-items-center text-center">                                      
-                <div class="col-3">
-                    <h6>Cantidad</h6>
-                </div>
-                <div class="col-9">
-                    <h6>Producto</h6>
-                </div>               
-            </div>
-        </div>
-    </div>
-</div>
--->

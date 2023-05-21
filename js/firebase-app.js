@@ -2,16 +2,26 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import {
     getAuth,
+    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    sendPasswordResetEmail,
+    onAuthStateChanged,
     signOut,
+    sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 import {
     getFirestore,
     collection,
+    doc,
     getDocs,
     addDoc,
+    updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import {
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
 
 // ! Ocultar las variables de configuración de Firebase
 
@@ -30,7 +40,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-/* Función para obtener los datos de la colección de Firebase */
+/* Funciones para manejar las colecciones de Firebase */
+
+// Función para obtener los datos de la colección de Firebase
 export function getDb(collectionName) {
     const collectionRef = collection(db, collectionName); // Obtener la colección
     const object = {}; // Crear un objeto para guardar los documentos
@@ -65,7 +77,89 @@ export function addDocument(collectionName, data) {
         });
 }
 
+// Función para actualizar un documento
+export function updateDocument(collectionName, docId, data) {
+    const docRef = doc(db, collectionName, docId);
+
+    updateDoc(docRef, data)
+        .then(() => {
+            console.log("Documento actualizado exitosamente");
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+/* Funciones para Firebase Storage */
+
+// ! No guarda la ruta completa de la imagen en el token
+
+// Función para subir una imagen a Firebase Storage
+export async function uploadImage(file) {
+    try {
+        // Obtener la referencia al archivo en el bucket de Firebase Storage
+        const storage = getStorage();
+        const storageRef = ref(storage, file.name);
+
+        // Subir la imagen al almacenamiento
+        const snapshot = await uploadBytes(storageRef, file);
+
+        // Obtener la URL de descarga
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        // Construir la URL completa de la imagen
+        const url = new URL(downloadURL);
+        const token = url.searchParams.get("token");
+
+        const completeUrl = `https://firebasestorage.googleapis.com${url.pathname}?alt=media&token=${token}`;
+
+        return completeUrl;
+    } catch (error) {
+        console.error("Error al subir la imagen:", error);
+        throw error;
+    }
+}
+
 /* Funciones para manejar la sesión del usuario */
+
+// Crear cuenta (No es usada por el momento)
+export function createAccount(
+    email,
+    password,
+    nombres,
+    apellidos,
+    nocontrol,
+    rfid
+) {
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Registro exitoso
+            const user = userCredential.user;
+            console.log("Usuario registrado:", user.uid);
+
+            // Guardar el usuario en la colección "usuarios"
+            const usuariosCollection = collection(db, "usuarios");
+            addDoc(usuariosCollection, {
+                correo: user.email,
+                nombres: nombres,
+                apellidos: apellidos,
+                noControl: nocontrol,
+                rfid: rfid,
+            })
+                .then(() => {
+                    console.log("Usuario guardado en Firestore correctamente.");
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        })
+        .catch((error) => {
+            // Manejar errores
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error("Error en el registro:", errorCode, errorMessage);
+        });
+}
 
 // Iniciar sesión
 export function login(emailValue, passValue, toast_error) {
@@ -79,6 +173,20 @@ export function login(emailValue, passValue, toast_error) {
             var toast = new bootstrap.Toast(toast_error);
             toast.show();
         });
+}
+
+// Comprobar autenticación
+export function authState() {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(
+            auth,
+            (user) => {
+                unsubscribe(); // Detener la escucha de cambios en la autenticación
+                resolve(user ? true : false); // Retornar true si el usuario está autenticado, false si no
+            },
+            reject
+        );
+    });
 }
 
 // Cerrar sesión

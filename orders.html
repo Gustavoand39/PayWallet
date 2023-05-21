@@ -35,20 +35,19 @@
             </nav>
         </header>
 
-        <main">
+        <main>
             <div class="container">
                 <div class="row background-secondary px-4 py-3 my-5 border-style">
-                    <div class="col-12">
-
-                        <!-- Template para mostrar las órdenes -->
-                        <div class="row bg-white p-2 my-3 border-style" data-bs-toggle="collapse" data-bs-target="#details" aria-expanded="false" aria-controls="details">
+                    <div class="col-12" id="ordersContainer">
+                        <!-- Templates -->
+                        <div class="row bg-white p-2 my-3 border-style" data-bs-toggle="collapse" data-bs-target="#id_1" aria-expanded="false" aria-controls="details">
                             <div class="col-10 d-flex align-items-center my-2">
                                 <h4 class="me-2">Gustavo Alonso</h4>
-                                <i class="fa-solid fa-caret-down me-2 fs-4"></i>
+                                <!-- <i class="fa-solid fa-caret-down me-2 fs-4"></i> -->
                             </div>
                             
                             <!-- Botones -->
-                            <div class="col-2 d-flex justify-content-center align-items-center gap-3 my-2">                                
+                            <div class="col-2 d-flex justify-content-center align-items-center gap-3 my-2">
                                 <button class="btn-success p-1 btn-style" title="Completada">
                                     <i class="fa-solid fa-check"></i>
                                 </button>
@@ -59,26 +58,28 @@
                             </div>
                             
                             <!-- Collapse que se activará al dar clic -->
-                            <div class="col-12">
-                                <div class="collapse" id="details">
+                            <div class="col-12 collapse" id="id_1">
 
-                                    <div class="row d-flex justify-content-evenly align-items-center text-center">                                      
-                                        <div class="col-3">
-                                            <h6>Cantidad</h6>
-                                        </div>
-                                        
-                                        <div class="col-9">
-                                            <h6>Producto</h6>
-                                        </div>               
-                                    </div>
-
-                                    
-
+                                <div class="row d-flex justify-content-center align-items-center text-center">
+                                    <div class="col-12">
+                                        <h6>Producto</h6>
+                                    </div>               
                                 </div>
+
+                                <div class="row d-flex justify-content-center align-items-center text-center">
+                                    <div class="col-12">
+                                        <span>Hamburguesa</span>
+                                    </div>
+                                </div>
+
+                                <div class="row d-flex justify-content-center align-items-center text-center">
+                                    <div class="col-12">
+                                        <span>Tacos</span>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
-                        
 
                     </div>
                 </div>

@@ -1,9 +1,10 @@
 export const cardTemplate = (name, price, url, id) => `
-    <div class="col-3 mb-4 card-class" data-id="${id}">
+    <div class="col-4 mb-4 card-class" data-id="${id}">
         <div class="card card-style">
-            <img src="${url}" class="card-img-top img-fluid"> <!-- Imagen del platillo -->
-            <div class="card-body">
-                <p class="card-text text-center">${name} <span class="fw-bold">($${price}.00)</span></p> <!-- Nombre del platillo -->
+            <img src="${url}" class="card-img-top img-fluid">
+            <div class="card-body text-center">
+                <div class="card-text">${name}</div> <!-- Nombre del platillo -->
+                <span class="fw-bold">($${price}.00)</span>
             </div>
         </div>
     </div>
@@ -29,7 +30,7 @@ export const orderTemplate = (name_order, price_order) => `
 */
 
 export const cardEmpty = () => `
-    <div class="col-3 mb-3">
+    <div class="col-4 mb-3">
         <div class="card">
             <img src="../../img/agotado.png" class="card-img-top"> <!-- Imagen del platillo -->
             <div class="card-body">

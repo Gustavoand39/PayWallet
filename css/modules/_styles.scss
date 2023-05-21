@@ -16,7 +16,7 @@
 
     &:hover {
         cursor: pointer;
-        transform: scale(1.1);
+        transform: scale(1.09);
     }
     
     &:focus {
@@ -36,6 +36,8 @@
 
 .card-style {
     border: 1px solid #ccc;
+    min-width: 100%;
+    object-fit: cover;
     padding: 10px;
     transition: all 0.2s ease-in-out;
     
