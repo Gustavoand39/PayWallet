@@ -1,10 +1,12 @@
 export const cardTemplate = (name, price, url, id) => `
-    <div class="col-4 mb-4 card-class" data-id="${id}">
-        <div class="card card-style">
-            <img src="${url}" class="card-img-top img-fluid">
-            <div class="card-body text-center">
-                <div class="card-text">${name}</div> <!-- Nombre del platillo -->
-                <span class="fw-bold">($${price}.00)</span>
+    <div class="col-3 card-container mb-3 card-class" data-id="${id}">
+        <div class="card-style">
+            <div class="card-image">
+                <img src="${url}" class="image img-fluid">
+            </div>
+            <div class="card-info text-center">
+                <span>${name}</span>
+                <span class="fw-bold">$${price}.00</sp>
             </div>
         </div>
     </div>
@@ -30,11 +32,13 @@ export const orderTemplate = (name_order, price_order) => `
 */
 
 export const cardEmpty = () => `
-    <div class="col-4 mb-3">
-        <div class="card">
-            <img src="../../img/agotado.png" class="card-img-top"> <!-- Imagen del platillo -->
-            <div class="card-body">
-                <p class="card-text text-center">Sin productos disponibles</p> <!-- Nombre del platillo -->
+    <div class="col-3 card-container mb-3">
+        <div class="card-style">
+            <div class="card-image">
+                <img src="../../img/agotado.png" class="image">
+            </div>
+            <div class="card-info text-center">
+                <span>No hay productos disponibles</span>
             </div>
         </div>
     </div>

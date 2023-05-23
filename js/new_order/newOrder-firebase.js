@@ -31,7 +31,7 @@ async function initializeApp() {
                 const id = docId; // Obtener el id del documento actual
                 const name = docData.nombre; // Obtener el nombre del platillo
                 const price = docData.precio; // Obtener el precio del platillo
-                const url = docData.url; // Obtener la url de la imagen del platillo
+                const url = docData.imagen.completeUrl; // Obtener la imagen del platillo
                 const stock = docData.stock; // Obtener el stock del platillo
 
                 if (stock) {
@@ -42,11 +42,9 @@ async function initializeApp() {
                         "Platillo del día": "#platilloDia",
                         Alimentos: "#alimentos",
                         Bebidas: "#bebidas",
-                        Postres: "#postres",
                     };
 
-                    const categoryId =
-                        category[docData.categoria] || "#variedades"; // Obtener el contenedor asignado a la categoría del platillo
+                    const categoryId = category[docData.categoria] || "#variedades"; // Obtener el contenedor asignado a la categoría del platillo
                     const cardsContainer = document.querySelector(categoryId); // Variable del contenedor de cards
                     cardsContainer.insertAdjacentHTML("beforeend", card); // Insertar el template en el contenedor
 
@@ -60,7 +58,6 @@ async function initializeApp() {
                 "platilloDia",
                 "alimentos",
                 "bebidas",
-                "postres",
                 "variedades",
             ]; // Array con los ids de los contenedores
 
@@ -89,7 +86,6 @@ async function initializeApp() {
                 dishesOrdered.push(name_order); // Agregar el nombre del platillo al array de platillos ordenados
 
                 ordersContainer.insertAdjacentHTML("beforeend", order); // Insertar el template en el contenedor de las órdenes
-
                 total += price_order; // Sumar el precio del platillo al total
                 totalElement.textContent = total; // Mostrar el total en el elemento HTML
             };

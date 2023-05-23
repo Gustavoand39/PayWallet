@@ -8,7 +8,7 @@ export const inventoryTemplate = (dish_name, id) => `
         <button class="btn-info btn-style p-1" title="Editar" data-bs-toggle="modal" data-bs-target="#modal_edit" id="edit_${id}">
             <i class="fa-solid fa-pen"></i>
         </button>
-        <button class="btn-danger btn-style p-1" title="Eliminar">
+        <button class="btn-danger btn-style p-1" title="Eliminar" id="delete_${id}">
             <i class="fa-solid fa-trash-can"></i>
         </button>
     </div>

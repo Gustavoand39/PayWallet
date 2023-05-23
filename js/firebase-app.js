@@ -15,10 +15,12 @@ import {
     getDocs,
     addDoc,
     updateDoc,
+    deleteDoc,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import {
     getStorage,
     ref,
+    deleteObject,
     uploadBytes,
     getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
@@ -46,6 +48,7 @@ const db = getFirestore(app);
 export function getDb(collectionName) {
     const collectionRef = collection(db, collectionName); // Obtener la colección
     const object = {}; // Crear un objeto para guardar los documentos
+    
     // Retornar una promesa
     return new Promise((resolve, reject) => {
         getDocs(collectionRef) // Obtener los documentos de la colección
@@ -90,9 +93,20 @@ export function updateDocument(collectionName, docId, data) {
         });
 }
 
-/* Funciones para Firebase Storage */
+// Fución para eliminar un documento
+export function deleteDocument(collectionName, docId) {
+    const docRef = doc(db, collectionName, docId);
 
-// ! No guarda la ruta completa de la imagen en el token
+    deleteDoc(docRef)
+        .then(() => {
+            console.log("Documento eliminado exitosamente");
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+/* Funciones para Firebase Storage */
 
 // Función para subir una imagen a Firebase Storage
 export async function uploadImage(file) {
@@ -113,11 +127,61 @@ export async function uploadImage(file) {
 
         const completeUrl = `https://firebasestorage.googleapis.com${url.pathname}?alt=media&token=${token}`;
 
-        return completeUrl;
+        const storageLocation = snapshot.ref.fullPath;
+
+        return {
+            completeUrl,
+            storageLocation,
+        }
     } catch (error) {
         console.error("Error al subir la imagen:", error);
         throw error;
     }
+}
+
+// Función para actualizar una imagen
+export async function updateImage(file, FileRef) {
+    try {
+        // Obtener la referencia al archivo en el bucket de Firebase Storage
+        const storage = getStorage();
+        const storageRef = ref(storage, FileRef);
+
+        // Subir la imagen al almacenamiento
+        const snapshot = await uploadBytes(storageRef, file);
+
+        // Obtener la URL de descarga
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        // Construir la URL completa de la imagen
+        const url = new URL(downloadURL);
+        const token = url.searchParams.get("token");
+
+        const completeUrl = `https://firebasestorage.googleapis.com${url.pathname}?alt=media&token=${token}`;
+
+        const storageLocation = snapshot.ref.fullPath;
+
+        return {
+            completeUrl,
+            storageLocation,
+        }
+    } catch (error) {
+        console.error("Error al subir la imagen:", error);
+        throw error;
+    }
+}
+
+// Función para eliminar un archivo de Storage
+export function deleteFile(FileRef) {
+    const storage = getStorage();
+    const storageRef = ref(storage, FileRef);
+
+    deleteObject(storageRef)
+        .then(() => {
+            console.log("Archivo eliminado exitosamente");
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 }
 
 /* Funciones para manejar la sesión del usuario */
@@ -135,7 +199,6 @@ export function createAccount(
         .then((userCredential) => {
             // Registro exitoso
             const user = userCredential.user;
-            console.log("Usuario registrado:", user.uid);
 
             // Guardar el usuario en la colección "usuarios"
             const usuariosCollection = collection(db, "usuarios");
