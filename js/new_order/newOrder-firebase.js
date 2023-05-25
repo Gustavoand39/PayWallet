@@ -1,4 +1,4 @@
-// Importes de funciones de firebase
+// Importes de funciones de firebase-app.js
 import {
     returnPage,
     logout,
@@ -6,7 +6,7 @@ import {
     addDocument,
     authState,
 } from "../firebase-app.js";
-// Importes de templates
+// Templates
 import { cardTemplate, orderTemplate, cardEmpty } from "./templates.js";
 
 async function initializeApp() {
@@ -21,12 +21,15 @@ async function initializeApp() {
     // Mostrar los datos una vez cargados
     async function showData() {
         try {
-            const dataObject = await getDb("platillos"); // Obtener el diccionario de datos con la colección
-            const cardsById = {}; // Objeto para guardar todas las cards y asignarles un evento de clic posteriormente
+            // Obtener el diccionario de datos con la colección
+            const dataObject = await getDb("platillos");
+            // Objeto para guardar todas las cards y asignarles un evento de clic posteriormente
+            const cardsById = {};
 
             // Recorrer el diccionario de datos en cada clave
             for (const docId in dataObject) {
-                const docData = dataObject[docId]; // Obtener el valor de cada clave (objeto con los datos del platillo)
+                // Obtener el valor de cada clave (objeto con los datos del platillo)
+                const docData = dataObject[docId];
 
                 const id = docId; // Obtener el id del documento actual
                 const name = docData.nombre; // Obtener el nombre del platillo
@@ -34,8 +37,10 @@ async function initializeApp() {
                 const url = docData.imagen.completeUrl; // Obtener la imagen del platillo
                 const stock = docData.stock; // Obtener el stock del platillo
 
+                // Verificar si el platillo está disponible
                 if (stock) {
-                    const card = cardTemplate(name, price, url, id); // Obtener el template del platillo
+                    // Obtener el template del platillo
+                    const card = cardTemplate(name, price, url, id);
 
                     // Asignar el contenedor en base a la categoría del platillo
                     const category = {
@@ -44,71 +49,103 @@ async function initializeApp() {
                         Bebidas: "#bebidas",
                     };
 
-                    const categoryId = category[docData.categoria] || "#variedades"; // Obtener el contenedor asignado a la categoría del platillo
-                    const cardsContainer = document.querySelector(categoryId); // Variable del contenedor de cards
-                    cardsContainer.insertAdjacentHTML("beforeend", card); // Insertar el template en el contenedor
+                    // Obtener el contenedor asignado a la categoría del platillo
+                    const categoryId = category[docData.categoria] || "#variedades";
+                    // Variable del contenedor de cards
+                    const cardsContainer = document.querySelector(categoryId);
+                    // Insertar el template en el contenedor
+                    cardsContainer.insertAdjacentHTML("beforeend", card);
 
-                    const cardElement = cardsContainer.lastElementChild; // Obtener la última card insertada del contenedor
-                    cardsById[id] = cardElement; // Guardar la card en el objeto cardsById
+                    // Obtener la última card insertada del contenedor
+                    const cardElement = cardsContainer.lastElementChild;
+                    // Guardar la card en el objeto cardsById
+                    cardsById[id] = cardElement;
                 }
             }
 
-            /* Contenedores vacíos */
+            // Obtener los elementos HTML de los contenedores
             const containers = [
                 "platilloDia",
                 "alimentos",
                 "bebidas",
                 "variedades",
-            ]; // Array con los ids de los contenedores
+            ];
 
             // Bucle para recorrer los contenedores y buscar si alguno está vacío
             for (const container of containers) {
-                const containerEmpty = document.getElementById(container); // Obtener el contenedor
+                // Obtener el contenedor
+                const containerEmpty = document.getElementById(container);
+                // Verificar si el contenedor está vacío
                 if (containerEmpty.childElementCount === 0) {
-                    const cardE = cardEmpty(); // Obtener el template de la card vacía
-                    containerEmpty.insertAdjacentHTML("beforeend", cardE); // Insertar el template en el contenedor
+                    // Genera el template de la card vacía
+                    const cardE = cardEmpty();
+                    // Insertar el template en el contenedor
+                    containerEmpty.insertAdjacentHTML("beforeend", cardE);
                 }
             }
 
-            /* Agregar los datos del platillo ordenado a la orden */
-            const ordersContainer = document.querySelector("#orders"); // Obtener el contenedor para poner platillos ordenados
-            let total = 0; // Variable para guardar el total de la orden
-            const totalElement = document.getElementById("total"); // Obtener el elemento HTML para mostrar el total
-            const dishesOrdered = []; // Array para guardar los platillos ordenados
+            // Obtener el contenedor para poner platillos ordenados
+            const ordersContainer = document.querySelector("#orders");
+            // Variable para guardar el total de la orden
+            let total = 0;
+            // Obtener el elemento HTML para mostrar el total
+            const totalElement = document.getElementById("total");
+            // Array para guardar los platillos ordenados
+            let dishesOrdered = [];
 
             // Función para agregar el platillo a la orden
             const handleCardClick = (cardId) => {
-                const docData = dataObject[cardId]; // Obtener los datos del platillo correspondiente al id
-                const name_order = docData.nombre; // Obtener el nombre del platillo
-                const price_order = docData.precio; // Obtener el precio del platillo
-                const order = orderTemplate(name_order, price_order); // Obtener el template de la orden
+                // Obtener el objeto con los datos del platillo
+                const docData = dataObject[cardId];
+                // Obtener el nombre del platillo
+                const name_order = docData.nombre;
+                // Obtener el precio del platillo
+                const price_order = docData.precio;
+                // Obtener los detalles del platillo (por ahora no hay)
+                const details = "...";
+                // Obtener el template de la orden
+                const order = orderTemplate(name_order, price_order);
 
-                dishesOrdered.push(name_order); // Agregar el nombre del platillo al array de platillos ordenados
-
-                ordersContainer.insertAdjacentHTML("beforeend", order); // Insertar el template en el contenedor de las órdenes
-                total += price_order; // Sumar el precio del platillo al total
-                totalElement.textContent = total; // Mostrar el total en el elemento HTML
+                // Agregar el platillo al array de platillos ordenados
+                dishesOrdered.push({
+                    detalles: details,
+                    platillo: cardId
+                });
+                
+                // Agregar el platillo al contenedor de las órdenes
+                ordersContainer.insertAdjacentHTML("beforeend", order);
+                // Sumar el precio del platillo al total
+                total += price_order;
+                // Mostrar el total en el elemento HTML
+                totalElement.textContent = total;
             };
 
-            /* Obtener todas las cards para asignarles el evento clic */
-            const cards = document.getElementsByClassName("card-class"); // Obtener todas las cards con la clase card-class
+            // Obtener todas las cards con la clase card-class
+            const cards = document.getElementsByClassName("card-class");
+            // Recorrer todas las cards
             Array.from(cards).forEach((card) => {
-                const cardId = card.getAttribute("data-id"); // Obtener el id de cada card
-                const cardElement = cardsById[cardId]; // Obtener las cards por id
+                // Obtener el id del platillo asociado a la card
+                const cardId = card.getAttribute("data-id");
+                // Obtener el elemento HTML de la card
+                const cardElement = cardsById[cardId];
 
                 // Por cada card, asignarle el evento clic
                 cardElement.addEventListener("click", () => {
-                    // Cuando se da clic en alguna card, se saca el id dentro de data-id y se pasa a la función
-                    handleCardClick(cardId); // Llamar a la función para agregar el platillo a la orden
+                    // Cuando se da clic en alguna card, se llama a la función handleCardClick
+                    handleCardClick(cardId);
                 });
             });
 
-            /* Completar la orden */
-            const orderComplete = document.getElementById("orderComplete"); // Obtener el botón para finalizar la orden
-            orderComplete.addEventListener("click", () => {
-                const nameClient = document.getElementById("nameClient"); // Obtener el input del nombre del cliente
-                const nameValue = nameClient.value; // Obtener el valor del input
+            // Obtener el botón para finalizar la orden
+            const orderComplete = document.getElementById("orderComplete");
+            // Asignar el evento clic al botón
+            orderComplete.addEventListener("click", async () => {
+                // Obtener el input del nombre del cliente
+                const nameClient = document.getElementById("nameClient");
+                // Obtener el valor del input
+                const nameValue = nameClient.value;
 
+                // Verificar si el input tiene algún valor y si hay platillos ordenados
                 if (nameValue !== "" && ordersContainer.childElementCount > 0) {
                     const date = new Date(); // Obtener la fecha actual
                     const day = date.getDate(); // Obtener el día
@@ -117,8 +154,10 @@ async function initializeApp() {
                     const hour = date.getHours(); // Obtener la hora
                     const minutes = date.getMinutes(); // Obtener los minutos
                     const seconds = date.getSeconds(); // Obtener los segundos
-                    const dateOrder = `${day}/${month}/${year} ${hour}:${minutes}:${seconds}`; // Obtener la fecha y hora en formato dd/mm/yyyy hh:mm:ss
+                    // Formatear la fecha y hora (dd/mm/aaaa hh:mm:ss)
+                    const dateOrder = `${day}/${month}/${year} ${hour}:${minutes}:${seconds}`;
 
+                    // Objeto con los datos de la orden
                     const order = {
                         cliente: nameValue,
                         fecha: dateOrder,
@@ -126,17 +165,22 @@ async function initializeApp() {
                         total: total,
                         completada: false,
                         cancelada: false,
-                    }; // Objeto con los datos de la orden
+                    };
 
-                    addDocument("ordenes", order); // Agregar la orden a la colección
+                    try {
+                        // Agregar la orden a la colección "ordenes"
+                        await addDocument("ordenes", order);
 
-                    // Limpiar orden
-                    ordersContainer.textContent = ""; // Limpiar el contenedor de las órdenes
-                    totalElement.textContent = ""; // Limpiar el total
-                    dishesOrdered.length = 0; // Limpiar el array de platillos ordenados
-                    total = 0; // Limpiar el total
-                    totalElement.textContent = total; // Mostrar el total en el elemento HTML
-                    nameClient.value = ""; // Limpiar el input del nombre del cliente
+                        // Limpiar orden
+                        ordersContainer.textContent = "";
+                        totalElement.textContent = "";
+                        dishesOrdered.length = 0;
+                        total = 0;
+                        totalElement.textContent = total;
+                        nameClient.value = "";
+                    } catch (error) {
+                        console.error(error); // Manejar el error si ocurre
+                    }
                 } else {
                     alert("Complete correctamente la orden");
                 }

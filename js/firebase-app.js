@@ -13,6 +13,7 @@ import {
     collection,
     doc,
     getDocs,
+    getDoc,
     addDoc,
     updateDoc,
     deleteDoc,
@@ -46,64 +47,112 @@ const db = getFirestore(app);
 
 // Función para obtener los datos de la colección de Firebase
 export function getDb(collectionName) {
-    const collectionRef = collection(db, collectionName); // Obtener la colección
-    const object = {}; // Crear un objeto para guardar los documentos
-    
+    // Obtener la referencia a la colección
+    const collectionRef = collection(db, collectionName);
+    // Objeto para guardar los datos de la colección
+    const object = {};
+
     // Retornar una promesa
     return new Promise((resolve, reject) => {
-        getDocs(collectionRef) // Obtener los documentos de la colección
+        // Obtener los documentos de la colección
+        getDocs(collectionRef)
             .then((querySnapshot) => {
                 // Recorrer los documentos
                 querySnapshot.forEach((doc) => {
                     // Guardar el id como clave y los datos como valor
                     object[doc.id] = doc.data();
                 });
-                resolve(object); // Retornar un objeto con la colección
+                // Retornar el objeto con los datos
+                resolve(object); 
             })
             .catch((error) => {
-                reject(error); // Retornar el error
+                // Manejar el error si ocurre
+                reject(error);
             });
     });
 }
 
+// Función para obtener los datos de un documento de la colección de Firebase
+export async function getDocument(collectionName, docId) {
+    // Obtener la referencia al documento
+    const docRef = doc(db, collectionName, docId);
+
+    try {
+        // Obtener los datos del documento
+        const docSnap = await getDoc(docRef);
+        // Verificar si el documento existe
+        if (docSnap.exists()) {
+            // Retornar los datos del documento
+            return docSnap.data();
+        } else {
+            // Retornar un error
+            throw new Error("El documento no existe");
+        }
+    } catch (error) {
+        throw error; // Retornar el error
+    }
+}
+
 // Función para agregar un documento a la colección
 export function addDocument(collectionName, data) {
-    const collectionRef = collection(db, collectionName); // Obtener la colección
+    // Retornar una promesa
+    return new Promise((resolve, reject) => {
+        // Obtener la referencia a la colección
+        const collectionRef = collection(db, collectionName);
 
-    addDoc(collectionRef, data) // Agregar el documento a la colección
-        .then(() => {
-            alert("Orden completada");
-            // window.location.href = "menu.html"; // Redirigir a la página del menú
-        })
-        .catch((error) => {
-            console.error(error); // Manejar el error si ocurre
-        });
+        // Agregar el documento a la colección
+        addDoc(collectionRef, data)
+            .then(() => {
+                // Resolver la promesa
+                alert("Orden completada");
+                resolve();
+            })
+            .catch((error) => {
+                // Manejar el error si ocurre
+                console.error(error);
+                reject(error);
+            });
+    });
 }
 
 // Función para actualizar un documento
 export function updateDocument(collectionName, docId, data) {
-    const docRef = doc(db, collectionName, docId);
+    // Retornar una promesa
+    return new Promise((resolve, reject) => {
+        // Obtener la referencia al documento
+        const docRef = doc(db, collectionName, docId);
 
-    updateDoc(docRef, data)
-        .then(() => {
-            console.log("Documento actualizado exitosamente");
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+        // Actualizar el documento
+        updateDoc(docRef, data)
+            .then(() => {
+                // Resolver la promesa
+                resolve();
+            })
+            .catch((error) => {
+                // Manejar el error si ocurre
+                reject(error);
+            });
+    });
 }
 
 // Fución para eliminar un documento
 export function deleteDocument(collectionName, docId) {
-    const docRef = doc(db, collectionName, docId);
+    // Retornar una promesa
+    return new Promise((resolve, reject) => {
+        // Obtener la referencia al documento
+        const docRef = doc(db, collectionName, docId);
 
-    deleteDoc(docRef)
-        .then(() => {
-            console.log("Documento eliminado exitosamente");
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+        // Eliminar el documento
+        deleteDoc(docRef)
+            .then(() => {
+                // Resolver la promesa
+                resolve();
+            })
+            .catch((error) => {
+                // Manejar el error si ocurre
+                reject(error);
+            });
+    });
 }
 
 /* Funciones para Firebase Storage */
@@ -113,6 +162,7 @@ export async function uploadImage(file) {
     try {
         // Obtener la referencia al archivo en el bucket de Firebase Storage
         const storage = getStorage();
+        // Crear una referencia con el nombre del archivo
         const storageRef = ref(storage, file.name);
 
         // Subir la imagen al almacenamiento
@@ -121,20 +171,23 @@ export async function uploadImage(file) {
         // Obtener la URL de descarga
         const downloadURL = await getDownloadURL(snapshot.ref);
 
-        // Construir la URL completa de la imagen
+        // Construir la URL de la imagen
         const url = new URL(downloadURL);
+        // Obtener el token de la imagen
         const token = url.searchParams.get("token");
 
+        // Construir la URL completa de la imagen
         const completeUrl = `https://firebasestorage.googleapis.com${url.pathname}?alt=media&token=${token}`;
 
+        // Obtener la ubicación del archivo en el bucket
         const storageLocation = snapshot.ref.fullPath;
 
+        // Retornar la URL completa y la ubicación del archivo
         return {
             completeUrl,
             storageLocation,
-        }
+        };
     } catch (error) {
-        console.error("Error al subir la imagen:", error);
         throw error;
     }
 }
@@ -144,6 +197,7 @@ export async function updateImage(file, FileRef) {
     try {
         // Obtener la referencia al archivo en el bucket de Firebase Storage
         const storage = getStorage();
+        // Crear una referencia con el nombre del archivo
         const storageRef = ref(storage, FileRef);
 
         // Subir la imagen al almacenamiento
@@ -152,36 +206,46 @@ export async function updateImage(file, FileRef) {
         // Obtener la URL de descarga
         const downloadURL = await getDownloadURL(snapshot.ref);
 
-        // Construir la URL completa de la imagen
+        // Construir la URL de la imagen
         const url = new URL(downloadURL);
+        // Obtener el token de la imagen
         const token = url.searchParams.get("token");
 
+        // Construir la URL completa de la imagen
         const completeUrl = `https://firebasestorage.googleapis.com${url.pathname}?alt=media&token=${token}`;
 
+        // Obtener la ubicación del archivo en el bucket
         const storageLocation = snapshot.ref.fullPath;
 
+        // Retornar la URL completa y la ubicación del archivo
         return {
             completeUrl,
             storageLocation,
-        }
+        };
     } catch (error) {
-        console.error("Error al subir la imagen:", error);
         throw error;
     }
 }
 
 // Función para eliminar un archivo de Storage
 export function deleteFile(FileRef) {
-    const storage = getStorage();
-    const storageRef = ref(storage, FileRef);
+    return new Promise((resolve, reject) => {
+        // Obtener la referencia al archivo
+        const storage = getStorage();
+        // Crear una referencia con el nombre del archivo
+        const storageRef = ref(storage, FileRef);
 
-    deleteObject(storageRef)
-        .then(() => {
-            console.log("Archivo eliminado exitosamente");
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+        // Eliminar el archivo
+        deleteObject(storageRef)
+            .then(() => {
+                // Resolver la promesa
+                resolve();
+            })
+            .catch((error) => {
+                // Manejar el error si ocurre
+                reject(error);
+            });
+    });
 }
 
 /* Funciones para manejar la sesión del usuario */
@@ -195,44 +259,44 @@ export function createAccount(
     nocontrol,
     rfid
 ) {
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Registro exitoso
-            const user = userCredential.user;
+    return new Promise((resolve, reject) => {
+        // Crear la cuenta de usuario
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Obtener el usuario
+                const user = userCredential.user;
 
-            // Guardar el usuario en la colección "usuarios"
-            const usuariosCollection = collection(db, "usuarios");
-            addDoc(usuariosCollection, {
-                correo: user.email,
-                nombres: nombres,
-                apellidos: apellidos,
-                noControl: nocontrol,
-                rfid: rfid,
-            })
-                .then(() => {
-                    console.log("Usuario guardado en Firestore correctamente.");
+                // Agregar el usuario a la colección de usuarios
+                const usuariosCollection = collection(db, "usuarios");
+                // Agregar el documento
+                addDoc(usuariosCollection, {
+                    correo: user.email,
+                    nombres: nombres,
+                    apellidos: apellidos,
+                    noControl: nocontrol,
+                    rfid: rfid,
                 })
-                .catch((error) => {
-                    console.error(error);
-                });
-        })
-        .catch((error) => {
-            // Manejar errores
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error("Error en el registro:", errorCode, errorMessage);
-        });
+                    .then(() => {
+                        // Resolver la promesa
+                        resolve();
+                    })
+                    .catch((error) => {
+                        // Manejar el error si ocurre
+                        reject(error);
+                    });
+            });
+    });
 }
 
 // Iniciar sesión
 export function login(emailValue, passValue, toast_error) {
     signInWithEmailAndPassword(auth, emailValue, passValue)
         .then(() => {
-            /* Si es correcto */
+            // Si es correcto redireccionar al menú
             window.location.href = "menu.html";
         })
         .catch(() => {
-            /* Si es incorrecto */
+            // Si es incorrecto mostrar un mensaje de error
             var toast = new bootstrap.Toast(toast_error);
             toast.show();
         });
@@ -240,12 +304,16 @@ export function login(emailValue, passValue, toast_error) {
 
 // Comprobar autenticación
 export function authState() {
+    // Retornar una promesa
     return new Promise((resolve, reject) => {
+        // Escuchar cambios en la autenticación
         const unsubscribe = onAuthStateChanged(
             auth,
             (user) => {
-                unsubscribe(); // Detener la escucha de cambios en la autenticación
-                resolve(user ? true : false); // Retornar true si el usuario está autenticado, false si no
+                // Detener la escucha
+                unsubscribe();
+                // Resolver la promesa
+                resolve(user ? true : false);
             },
             reject
         );
@@ -254,13 +322,18 @@ export function authState() {
 
 // Cerrar sesión
 export function logout(id, location) {
+    // Obtener el botón de cerrar sesión
     const logout_btn = document.getElementById(id);
+    // Agregar el evento click
     logout_btn.addEventListener("click", () => {
+        // Cerrar sesión
         signOut(auth)
             .then(() => {
+                // Redireccionar a la página de inicio
                 window.location.href = location;
             })
             .catch((error) => {
+                // Mostrar el error si ocurre
                 alert(error.message);
             });
     });
@@ -270,18 +343,23 @@ export function logout(id, location) {
 export function recoverPass(modal_email, modal_recoverPass, msg) {
     sendPasswordResetEmail(auth, modal_email)
         .then(() => {
+            // Mostrar mensaje de éxito
             alert(msg);
             modal_recoverPass.hide();
         })
         .catch((error) => {
+            // Mostrar el error si ocurre
             alert(error.message);
         });
 }
 
 /* Botón de regresar página */
 export function returnPage(id, location) {
+    // Obtener el botón de regresar
     const btn_return = document.getElementById(id);
+    // Agregar el evento click
     btn_return.addEventListener("click", () => {
+        // Redireccionar a la página indicada
         window.location.href = location;
     });
 }
