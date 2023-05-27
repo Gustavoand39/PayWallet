@@ -1,9 +1,9 @@
 export const orderTemplate = (id, name) => `
-<div class="row background-secondary p-2 my-4 border-style">
+<div class="row background-secondary my-3 border-style">
     <div class="col-12">
-        <div class="row bg-white p-2 my-4 mx-2 border-style">
-            <div class="col-9 d-flex align-items-center my-2">
-                <h4 class="me-2">${name}</h4>
+        <div class="row bg-white mx-2 my-3 p-1 border-style">
+            <div class="col-9 d-flex align-items-center">
+                <h4>${name}</h4>
             </div>
 
             <div class="col-3 d-flex justify-content-center align-items-center gap-3 my-2">
@@ -22,7 +22,7 @@ export const orderTemplate = (id, name) => `
 
             <div class="col-12 collapse" id="collapse_${id}">
 
-                <div class="row">
+                <div class="row px-3">
                     <table class="table table-striped">
                         <thead>
                             <tr class="text-center">

@@ -108,7 +108,7 @@ async function initializeApp() {
                             const data = {
                                 categoria: selectCategory,
                                 nombre: nameEdit.value,
-                                precio: priceEdit.value,
+                                precio: parseFloat(priceEdit.value),
                                 stock: option1.checked ? true : false,
                             }; // Obtener los valores del modal
 
