@@ -11,7 +11,7 @@ export const orderTemplate = (id, name) => `
                     <i class="fa-solid fa-receipt"></i>
                 </button>
 
-                <button class="btn-success p-1 btn-style btn_complete" id="complete_${id}" title="Completada">
+                <button class="btn-success p-1 btn-style btn_finished" id="finished_${id}" title="Finalizada">
                     <i class="fa-solid fa-check"></i>
                 </button>
 

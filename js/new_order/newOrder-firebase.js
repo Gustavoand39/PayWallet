@@ -163,6 +163,7 @@ async function initializeApp() {
                         fecha: dateOrder,
                         platillos: dishesOrdered,
                         total: total,
+                        finalizada: false,
                         completada: false,
                         cancelada: false,
                     };

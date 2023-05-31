@@ -41,6 +41,7 @@ async function initializeApp() {
                 const dishes = docData.platillos;
 
                 // Obtener el estado de la orden
+                const finished = docData.finalizada;
                 const complete = docData.completada;
                 const cancel = docData.cancelada;
 
@@ -48,7 +49,7 @@ async function initializeApp() {
                 let clientName;
 
                 // Validar si la orden no está cancelada ni completada
-                if (!complete && !cancel) {
+                if (!complete && !cancel && !finished) {
                     // Validar si el cliente es un alumno
                     if (regex.test(client)) {
                         // Recorrer el diccionario de datos en cada clave
@@ -83,26 +84,36 @@ async function initializeApp() {
                 }
             }
 
-            // Obtener todos los botones de completar orden
-            const completeBtns = document.getElementsByClassName("btn_complete");
+            // Obtener todos los botones de finalizar orden
+            const finishedBtns = document.getElementsByClassName("btn_finished");
             // Recorrer los botones
-            Array.from(completeBtns).forEach((btn) => {
+            Array.from(finishedBtns).forEach((btn) => {
                 // Obtener el id del botón
                 const orderId = btn.id;
                 // Obtener el id de la orden
-                const idComplete = orderId.substring(9);
+                const idFinished = orderId.substring(9);
 
                 // Agregar un evento a cada botón
                 btn.addEventListener("click", async () => {
                     try {
                         // Obtener el documento de la orden y esperar a que se complete
-                        const doc = await getDocument("ordenes", idComplete);
-                        // Crear un objeto con los datos a actualizar
-                        const data = {
-                            completada: !doc.completada,
-                        };
+                        const doc = await getDocument("ordenes", idFinished);
+                        const user = doc.cliente;
+
+                        let data = {};
+
+                        if (regex.test(user)) {
+                            data = {
+                                finalizada: !doc.finalizada,
+                            }
+                        } else {
+                            data = {
+                                finalizada: !doc.finalizada,
+                                completada: !doc.completada,
+                            }
+                        }
                         // Actualizar el documento y esperar a que se complete
-                        await updateDocument("ordenes", idComplete, data);
+                        await updateDocument("ordenes", idFinished, data);
                         // Recargar la página
                         location.reload();
                     } catch (error) {
