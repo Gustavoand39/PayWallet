@@ -28,8 +28,8 @@ async function initializeApp() {
             // Obtener el diccionario de datos con la colección
             const userObject = await getDb("usuarios");
 
-            // Expresión regular para validar si el cliente es un alumno o no con el número de control
-            const regex = /^[A-Za-z]\d+$/;
+            // Expresión regular para validar si el cliente es un alumno o no
+            const regex = /^\d+$/;
 
             // Recorrer el diccionario de datos en cada clave
             for (const docId in dataObject) {
@@ -55,7 +55,7 @@ async function initializeApp() {
                         // Recorrer el diccionario de datos en cada clave
                         for (const userId in userObject) {
                             const userData = userObject[userId]; // Obtener los datos del usuario
-                            if (client === userData.noControl) {
+                            if (client === userData.rfid) {
                                 clientName = userData.nombres; // Nombre del alumno
                             }
                         }
