@@ -34,5 +34,4 @@ Este proyecto es parte de un trabajo escolar y todavía contiene áreas para mej
 
 ## Notas importantes
 
-- Fue desarrollado como un proyecto escolar.
 - Este proyecto es solo para fines educativos y no está destinado a un uso en producción.
